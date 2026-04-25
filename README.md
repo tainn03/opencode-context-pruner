@@ -1,9 +1,9 @@
-# Dynamic Context Pruning Plugin
+# Dynamic Context Pruning Plugin with Dream Consolidation
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/dansmolsky)
 [![npm version](https://img.shields.io/npm/v/@tainn03/opencode-context-pruner.svg)](https://www.npmjs.com/package/@tainn03/opencode-context-pruner)
 
-Automatically reduces token usage in OpenCode by managing conversation context.
+Automatically reduces token usage in OpenCode by managing conversation context, now featuring Dream Consolidation for long-term institutional memory.
 
 ![DCP in action](assets/images/dcp-demo9.png)
 
@@ -39,6 +39,40 @@ Identifies repeated tool calls (same tool, same arguments) and keeps only the mo
 ### Purge Errors
 
 Prunes inputs from errored tool calls after a configurable number of turns (default: 4). Error messages are preserved; only the potentially large input content is removed. Recalculated on compress tool use.
+
+## Dream Consolidation
+
+Dream Consolidation is an optional feature that provides long-term institutional memory by extracting insights from conversations and storing them in AGENTS.md. It runs as an offline process (similar to human memory consolidation during sleep) and does not interfere with the normal compression workflow.
+
+### Features
+
+- 4-phase pipeline: Extract insights, distill with symbolic notation, write to AGENTS.md, inject into context
+- Symbolic notation (→, ➔, ✅, ⚠️, ❌) for rapid scanning
+- Non-destructive archiving: old entries marked with `(Outdated)` or `(Deprecated)`
+- Automatic triggering after compression or on idle
+- Manual control via `/dream` command
+- Multi-language support (TS, JS, Python, Java, Go, Rust, C++, JSON)
+- LSP-assisted extraction for code-aware insights (optional)
+
+### Enabling Dream Consolidation
+
+Add the following to your `.opencode/dcp.jsonc`:
+
+```jsonc
+{
+  "dream": {
+    "enabled": true,
+    "triggerOn": ["compress", "idle"],
+    "idleTimeout": 300000,
+    "archiveThreshold": 50,
+    "maxEntriesPerRun": 15,
+    "injectIntoContext": true,
+    "lspEnabled": false
+  }
+}
+```
+
+See [DREAM_USER_GUIDE.md](DREAM_USER_GUIDE.md) for full details.
 
 ## Configuration
 

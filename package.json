@@ -42,7 +42,7 @@
         "dev": "opencode plugin dev",
         "typecheck": "tsc --noEmit",
         "tui:link-host-runtime": "node scripts/link-tui-host-runtime.mjs",
-        "test": "node --import tsx --test tests/*.test.ts",
+        "test": "node --import tsx --test tests/*.test.ts tests/**/*.test.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "dcp": "tsx scripts/print.ts"

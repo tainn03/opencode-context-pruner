@@ -233,3 +233,10 @@ export class Logger {
         } catch (error) {}
     }
 }
+
+/**
+ * Singleton logger instance for use throughout the plugin
+ * Debug mode can be toggled via environment or config
+ */
+const debugEnabled = process.env.DCP_DEBUG === "true" || !!process.env.DEBUG?.includes("dcp")
+export const logger = new Logger(debugEnabled, "dcp")
