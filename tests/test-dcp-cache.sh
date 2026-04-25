@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# DCP Token Cache Test Script
+# Context Pruner Token Cache Test Script
 # Tests how Dynamic Context Pruning affects token caching across different providers/models
 #
 # Usage:
@@ -145,7 +145,7 @@ else
     PROVIDERS=("${!MODELS[@]}")
 fi
 
-log_section "DCP Token Cache Test"
+log_section "Context Pruner Token Cache Test"
 log "Results directory: ${RUN_DIR}"
 log "Providers to test: ${PROVIDERS[*]}"
 log "Codebases: ${#CODEBASES[@]}"
@@ -251,7 +251,7 @@ for provider in "${PROVIDERS[@]}"; do
         # Build opencode command (for display only, actual execution below)
         if [[ -z "$SESSION_ID" ]]; then
             # First prompt - create new session
-            display_cmd="${BASE_CMD} -m '${model}' --title 'DCP Test: ${provider}' '<prompt>'"
+            display_cmd="${BASE_CMD} -m '${model}' --title 'Context Pruner Test: ${provider}' '<prompt>'"
         else
             # Subsequent prompts - continue session
             display_cmd="${BASE_CMD} -m '${model}' --session '${SESSION_ID}' '<prompt>'"
@@ -276,13 +276,13 @@ for provider in "${PROVIDERS[@]}"; do
                 if [[ "$USE_SERVER" == "true" ]]; then
                     opencode run --attach "http://localhost:${SERVER_PORT}" \
                         -m "${model}" \
-                        --title "DCP Test: ${provider}" \
+                        --title "Context Pruner Test: ${provider}" \
                         --format json \
                         "${prompt}" 2>&1 | tee "$json_file"
                 else
                     opencode run \
                         -m "${model}" \
-                        --title "DCP Test: ${provider}" \
+                        --title "Context Pruner Test: ${provider}" \
                         --format json \
                         "${prompt}" 2>&1 | tee "$json_file"
                 fi
@@ -294,7 +294,7 @@ for provider in "${PROVIDERS[@]}"; do
                     log "Warning: Could not extract session ID from JSON output"
                     # Fallback to opencode-find-session
                     log "Falling back to session search..."
-                    SESSION_ID=$("${SCRIPTS_DIR}/opencode-find-session" "DCP Test: ${provider}" 2>/dev/null | head -1 || echo "")
+                    SESSION_ID=$("${SCRIPTS_DIR}/opencode-find-session" "Context Pruner Test: ${provider}" 2>/dev/null | head -1 || echo "")
                 fi
                 
                 if [[ -z "$SESSION_ID" ]]; then
@@ -336,9 +336,9 @@ for provider in "${PROVIDERS[@]}"; do
         "${SCRIPTS_DIR}/opencode-token-stats" --session "$SESSION_ID" > "${provider_dir}/token_stats.txt" 2>&1 || true
         "${SCRIPTS_DIR}/opencode-token-stats" --session "$SESSION_ID" --json > "${provider_dir}/token_stats.json" 2>&1 || true
         
-        # DCP stats
-        "${SCRIPTS_DIR}/opencode-dcp-stats" --session "$SESSION_ID" > "${provider_dir}/dcp_stats.txt" 2>&1 || true
-        "${SCRIPTS_DIR}/opencode-dcp-stats" --session "$SESSION_ID" --json > "${provider_dir}/dcp_stats.json" 2>&1 || true
+        # Context Pruner stats
+        "${SCRIPTS_DIR}/opencode-context-pruner-stats" --session "$SESSION_ID" > "${provider_dir}/dcp_stats.txt" 2>&1 || true
+        "${SCRIPTS_DIR}/opencode-context-pruner-stats" --session "$SESSION_ID" --json > "${provider_dir}/dcp_stats.json" 2>&1 || true
         
         log "Analysis saved to: ${provider_dir}/"
     elif [[ "$DRY_RUN" == "true" ]]; then
@@ -346,7 +346,7 @@ for provider in "${PROVIDERS[@]}"; do
         echo "  # After session completes:"
         echo "  $ ${SCRIPTS_DIR}/opencode-session-timeline --session \$SESSION_ID > ${provider_dir}/session_timeline.txt"
         echo "  $ ${SCRIPTS_DIR}/opencode-token-stats --session \$SESSION_ID > ${provider_dir}/token_stats.txt"
-        echo "  $ ${SCRIPTS_DIR}/opencode-dcp-stats --session \$SESSION_ID > ${provider_dir}/dcp_stats.txt"
+        echo "  $ ${SCRIPTS_DIR}/opencode-context-pruner-stats --session \$SESSION_ID > ${provider_dir}/dcp_stats.txt"
     fi
 done
 

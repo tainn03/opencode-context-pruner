@@ -1,6 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/package.json",
-    "name": "@tarquinen/opencode-dcp",
+    "name": "@tainn03/opencode-context-pruner",
     "version": "3.1.9",
     "type": "module",
     "description": "OpenCode plugin that optimizes token usage by pruning obsolete tool outputs from conversation context",
@@ -40,12 +40,12 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Tarquinen/opencode-dynamic-context-pruning.git"
+        "url": "git+https://github.com/tainn03/opencode-context-pruner.git"
     },
     "bugs": {
-        "url": "https://github.com/Tarquinen/opencode-dynamic-context-pruning/issues"
+        "url": "https://github.com/tainn03/opencode-context-pruner/issues"
     },
-    "homepage": "https://github.com/Tarquinen/opencode-dynamic-context-pruning#readme",
+    "homepage": "https://github.com/tainn03/opencode-context-pruner#readme",
     "author": "tarquinen",
     "license": "AGPL-3.0-or-later",
     "peerDependencies": {

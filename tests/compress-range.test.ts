@@ -8,7 +8,7 @@ import { createSessionState, type WithParts } from "../lib/state"
 import type { PluginConfig } from "../lib/config"
 import { Logger } from "../lib/logger"
 
-const testDataHome = join(tmpdir(), `opencode-dcp-tests-${process.pid}`)
+const testDataHome = join(tmpdir(), `opencode-context-pruner-tests-${process.pid}`)
 const testConfigHome = join(tmpdir(), `opencode-dcp-config-tests-${process.pid}`)
 
 process.env.XDG_DATA_HOME = testDataHome
