@@ -78,14 +78,13 @@ if (packageJson.exports?.["./tui"]?.import !== "./tui/index.tsx") {
     fail("expected package.json exports['./tui'].import to be './tui/index.tsx'")
 }
 
-const packOutput = execFileSync(
-    "C:\\Program Files\\nodejs\\npm.cmd",
-    ["pack", "--dry-run", "--json"],
-    {
-        cwd: repoRoot,
-        encoding: "utf8",
-    },
-)
+const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm"
+
+const packOutput = execFileSync(npmCommand, ["pack", "--dry-run", "--json"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+    shell: process.platform === "win32",
+})
 
 const packResult = JSON.parse(packOutput)
 if (!Array.isArray(packResult) || packResult.length !== 1 || !Array.isArray(packResult[0]?.files)) {
