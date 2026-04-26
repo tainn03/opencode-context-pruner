@@ -25,15 +25,15 @@ Edit `.opencode/dcp.jsonc` (or global `~/.config/opencode/dcp.jsonc`):
 
 ```jsonc
 {
-  "dream": {
-    "enabled": true,                    // Enable the feature
-    "triggerOn": ["compress", "idle"],  // When to run (compress = after compression, idle = on inactivity)
-    "idleTimeout": 300,                 // Idle timeout in seconds (default: 5 min)
-    "archiveThreshold": 50,             // Auto-archive when entries exceed this (default: 50)
-    "maxEntriesPerRun": 15,             // Max new entries per run (default: 15)
-    "injectIntoContext": true,          // Inject memory into agent prompts (default: true)
-    "lspEnabled": false                 // Use LSP for code-aware extraction (default: false, expert)
-  }
+    "dream": {
+        "enabled": true, // Enable the feature
+        "triggerOn": ["compress", "idle"], // When to run (compress = after compression, idle = on inactivity)
+        "idleTimeout": 300, // Idle timeout in seconds (default: 5 min)
+        "archiveThreshold": 50, // Auto-archive when entries exceed this (default: 50)
+        "maxEntriesPerRun": 15, // Max new entries per run (default: 15)
+        "injectIntoContext": true, // Inject memory into agent prompts (default: true)
+        "lspEnabled": false, // Use LSP for code-aware extraction (default: false, expert)
+    },
 }
 ```
 
@@ -129,17 +129,17 @@ Your institutional memory is stored in human-readable Markdown:
 
 ## Security (12 entries)
 
-* **security**: Database connection hardening: plain-text → TLS/mTLS ✅ *(ses_abc123)*
-* **security**: API key rotation: manual → automated quarterly ✅ *(ses_abc123)*
+- **security**: Database connection hardening: plain-text → TLS/mTLS ✅ _(ses_abc123)_
+- **security**: API key rotation: manual → automated quarterly ✅ _(ses_abc123)_
 
 ## Bugs (18 entries)
 
-* **bug**: Memory leak in cache cleanup (3x): untracked refs → explicit cleanup ✅ *(ses_def456)*
-* **bug**: Race condition in async loop: unchecked → mutex-protected ✅ *(ses_ghi789)*
+- **bug**: Memory leak in cache cleanup (3x): untracked refs → explicit cleanup ✅ _(ses_def456)_
+- **bug**: Race condition in async loop: unchecked → mutex-protected ✅ _(ses_ghi789)_
 
 ## Architecture (8 entries)
 
-* **architecture**: Cache layer: embedded Redis → external cluster ✅ *(ses_jkl012)*
+- **architecture**: Cache layer: embedded Redis → external cluster ✅ _(ses_jkl012)_
 
 ...
 ```
@@ -155,37 +155,37 @@ Your institutional memory is stored in human-readable Markdown:
 
 ### Categories
 
-| Category | Usage | Example |
-|----------|-------|---------|
-| **security** | Vulnerabilities, hardening, auth | "SQL injection → parameterized queries ✅" |
-| **architecture** | Design decisions, refactors | "Monolith → microservices ✅" |
-| **bug** | Defects found and fixed | "Memory leak (2x) → explicit cleanup ✅" |
-| **performance** | Optimizations, bottlenecks | "O(n²) sort → O(n log n) ✅" |
-| **dependency** | Package upgrades, removals | "Lodash → native array methods ✅" |
-| **error** | Runtime errors, crashes | "Connection timeout ⚠️" |
-| **refactor** | Code cleanup, structure | "Callback hell → async/await ✅" |
-| **other** | Miscellaneous insights | General notes |
+| Category         | Usage                            | Example                                    |
+| ---------------- | -------------------------------- | ------------------------------------------ |
+| **security**     | Vulnerabilities, hardening, auth | "SQL injection → parameterized queries ✅" |
+| **architecture** | Design decisions, refactors      | "Monolith → microservices ✅"              |
+| **bug**          | Defects found and fixed          | "Memory leak (2x) → explicit cleanup ✅"   |
+| **performance**  | Optimizations, bottlenecks       | "O(n²) sort → O(n log n) ✅"               |
+| **dependency**   | Package upgrades, removals       | "Lodash → native array methods ✅"         |
+| **error**        | Runtime errors, crashes          | "Connection timeout ⚠️"                    |
+| **refactor**     | Code cleanup, structure          | "Callback hell → async/await ✅"           |
+| **other**        | Miscellaneous insights           | General notes                              |
 
 ## Keyword Scoring
 
 Dream detects insights based on keyword salience:
 
-| Keyword | Weight | Triggers On |
-|---------|--------|-------------|
-| security | 95 | "vulnerability", "exploit", "breach" |
-| vulnerability | 95 | SQL injection, XSS, CSRF |
-| exploit | 90 | Security attack patterns |
-| crash | 80 | Application crashes, panics |
-| fix | 70 | Bug fixes, patches |
-| migration | 60 | Migrations, version upgrades |
-| bug | 60 | Defects, regressions |
-| performance | 60 | Optimizations, bottlenecks |
-| architecture | 70 | Design patterns, structure |
-| refactor | 50 | Code cleanup, modernization |
-| error | 40 | Error messages, exceptions |
-| dependency | 35 | Package management, versions |
-| optimization | 40 | Speed, memory, efficiency |
-| other | 20 | General insights |
+| Keyword       | Weight | Triggers On                          |
+| ------------- | ------ | ------------------------------------ |
+| security      | 95     | "vulnerability", "exploit", "breach" |
+| vulnerability | 95     | SQL injection, XSS, CSRF             |
+| exploit       | 90     | Security attack patterns             |
+| crash         | 80     | Application crashes, panics          |
+| fix           | 70     | Bug fixes, patches                   |
+| migration     | 60     | Migrations, version upgrades         |
+| bug           | 60     | Defects, regressions                 |
+| performance   | 60     | Optimizations, bottlenecks           |
+| architecture  | 70     | Design patterns, structure           |
+| refactor      | 50     | Code cleanup, modernization          |
+| error         | 40     | Error messages, exceptions           |
+| dependency    | 35     | Package management, versions         |
+| optimization  | 40     | Speed, memory, efficiency            |
+| other         | 20     | General insights                     |
 
 ## Retry Pattern Detection
 
@@ -260,6 +260,7 @@ Session A:
 ### Dream isn't triggering
 
 **Check**:
+
 - `dream.enabled: true` in config
 - Session has messages to analyze
 - Compression triggers or idle timeout met
@@ -268,6 +269,7 @@ Session A:
 ### Memory entries seem low-quality
 
 **Adjust**:
+
 - Lower keyword weights for noisy terms
 - Increase `archiveThreshold` to keep more history
 - Review extraction logic in `lib/dream/extractors/messages.ts`
@@ -276,6 +278,7 @@ Session A:
 ### AGENTS.md is growing too fast
 
 **Options**:
+
 - Decrease `maxEntriesPerRun` (fewer entries per consolidation)
 - Increase `archiveThreshold` (archive more aggressively)
 - Run `/dream archive 20` to manually archive older entries
@@ -283,6 +286,7 @@ Session A:
 ### Injected memory isn't helping agents
 
 **Try**:
+
 - Increase `maxEntriesPerRun` to include more entries
 - Manually edit AGENTS.md to highlight key insights
 - Enable `lspEnabled: true` for code-aware extraction
@@ -311,6 +315,7 @@ Session A:
 ### Multi-Language Support
 
 Dream works with code in any language by detecting file types:
+
 - TypeScript, JavaScript, Python, Java, Go, Rust, C++, etc.
 - Extracts language-specific patterns and conventions
 

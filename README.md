@@ -60,15 +60,15 @@ Add the following to your `.opencode/dcp.jsonc`:
 
 ```jsonc
 {
-  "dream": {
-    "enabled": true,
-    "triggerOn": ["compress", "idle"],
-    "idleTimeout": 300000,
-    "archiveThreshold": 50,
-    "maxEntriesPerRun": 15,
-    "injectIntoContext": true,
-    "lspEnabled": false
-  }
+    "dream": {
+        "enabled": true,
+        "triggerOn": ["compress", "idle"],
+        "idleTimeout": 300000,
+        "archiveThreshold": 50,
+        "maxEntriesPerRun": 15,
+        "injectIntoContext": true,
+        "lspEnabled": false,
+    },
 }
 ```
 
