@@ -12,7 +12,7 @@ Automatically reduces token usage in OpenCode by managing conversation context, 
 Install from the CLI:
 
 ```bash
-opencode plugin @tainn03/opencode-context-pruner@latest --global
+opencode plugin @tainn03/opencode-context-pruner@1.0.0 --global
 ```
 
 This installs the package and adds it to your global OpenCode config.
