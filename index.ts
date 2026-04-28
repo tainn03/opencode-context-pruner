@@ -99,6 +99,11 @@ const server: Plugin = (async (ctx) => {
                     template: "",
                     description: "Show available DCP commands",
                 }
+                // Register /dream command for technical backlog notes
+                opencodeConfig.command["dream"] = {
+                    template: "",
+                    description: "Record technical note to AGENTS.md backlog",
+                }
             }
 
             const toolsToAdd: string[] = []

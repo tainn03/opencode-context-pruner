@@ -323,7 +323,7 @@ const SidebarContext = (props: {
                 <box flexDirection="row" gap={1} alignItems="center">
                     <box paddingLeft={1} paddingRight={1} backgroundColor={props.palette.accent}>
                         <text fg={props.palette.panel}>
-                            <b>{LABEL}</b>
+                            <b>Context Pruner</b>
                         </text>
                     </box>
                 </box>

@@ -27,6 +27,7 @@ import {
     applyPendingManualTrigger,
     handleContextCommand,
     handleDecompressCommand,
+    handleDreamCommand,
     handleHelpCommand,
     handleManualToggleCommand,
     handleManualTriggerCommand,
@@ -169,6 +170,37 @@ export function createCommandExecuteHandler(
     ) => {
         if (!config.commands.enabled) {
             return
+        }
+
+        // Handle /dream command for technical backlog notes
+        if (input.command === "dream") {
+            const messagesResponse = await client.session.messages({
+                path: { id: input.sessionID },
+            })
+            const messages = filterMessages(messagesResponse.data || messagesResponse)
+
+            await ensureSessionInitialized(
+                client,
+                state,
+                input.sessionID,
+                logger,
+                messages,
+                config.manualMode.enabled,
+            )
+
+            const args = (input.arguments || "").trim().split(/\s+/).filter(Boolean)
+
+            const commandCtx = {
+                client,
+                state,
+                config,
+                logger,
+                sessionId: input.sessionID,
+                messages,
+            }
+
+            await handleDreamCommand(commandCtx, args)
+            throw new Error("__DREAM_HANDLED__")
         }
 
         if (input.command === "dcp") {

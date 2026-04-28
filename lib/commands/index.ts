@@ -1,5 +1,6 @@
 export { handleContextCommand } from "./context"
 export { handleDecompressCommand } from "./decompress"
+export { handleDreamCommand } from "./dream"
 export { handleHelpCommand } from "./help"
 export {
     applyPendingManualTrigger,

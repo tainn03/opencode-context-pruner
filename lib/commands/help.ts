@@ -20,6 +20,7 @@ export interface HelpCommandContext {
 }
 
 const BASE_COMMANDS: [string, string][] = [
+    ["/dream", "Record technical note to AGENTS.md backlog"],
     ["/dcp context", "Show token usage breakdown for current session"],
     ["/dcp stats", "Show DCP pruning statistics"],
     ["/dcp sweep [n]", "Prune tools since last user message, or last n tools"],

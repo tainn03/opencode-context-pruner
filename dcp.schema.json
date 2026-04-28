@@ -324,57 +324,6 @@
                     }
                 }
             }
-        },
-        "dream": {
-            "type": "object",
-            "description": "Dream Consolidation settings - offline processing to distill insights into AGENTS.md",
-            "additionalProperties": false,
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Enable Dream Consolidation (default: off, user opts in)"
-                },
-                "triggerOn": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": ["compress", "manual", "idle"]
-                    },
-                    "default": ["compress"],
-                    "description": "When to trigger Dream: after compress, manual command, or idle timeout"
-                },
-                "idleTimeout": {
-                    "type": "number",
-                    "default": 300000,
-                    "description": "Idle timeout in milliseconds before auto-dream (default: 5 min)"
-                },
-                "maxTokensPerEntry": {
-                    "type": "number",
-                    "default": 200,
-                    "description": "Maximum tokens per distilled entry"
-                },
-                "maxEntriesPerRun": {
-                    "type": "number",
-                    "default": 15,
-                    "description": "Maximum insights to extract per dream run"
-                },
-                "archiveThreshold": {
-                    "type": "number",
-                    "default": 50,
-                    "description": "Archive old entries when backlog exceeds this count"
-                },
-                "injectIntoContext": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Inject dream summary into agent context for long-term memory"
-                },
-                "lspEnabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Use LSP for code-aware extraction (falls back to text if unavailable)"
-                }
-            }
         }
     }
 }
